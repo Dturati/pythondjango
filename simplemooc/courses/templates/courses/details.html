@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load staticfiles  %}
+{% block content %}
+
+    {{course}} <br>
+    {{course.description}} <br>
+    {{course.about | linebreaks}}<br>
+     {% if course.image %}
+               <img src="{{ course.image.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'img/teste.jpg' %}" alt="" /> <!-- static carrega arquivos de diretorio -->
+                </a>
+                {%endif%}
+<a href="{% url 'index:enrollment' courses.slug %}" >Increva-ce</a>
+<form class="pure-form pure-form-stacked" method="post">
+    <fieldset>
+        <legend>Olá punheteiro</legend>
+        {% if is_valid  %}
+            <p>Enviado com sucesso</p>
+        {% endif %}
+        {% csrf_token %}
+        {% for field in form %}
+        {{ field.label_tag }}
+        {{ field }}
+        {%  if field.errors %}
+            {% for error in field.errors %}
+            <li>{{error}}</li>
+            {% endfor %}
+        {% endif %}
+
+        {% endfor %}
+        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+    </fieldset>
+</form>
+{% endblock %}
+

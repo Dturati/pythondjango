@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load courses_tags %} <!-- a pasta templatetags é padrão -->
+
+{% block content %}
+<div class="content-ribbon">
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %}
+</div>
+<ul class="breadcrumb">
+    {% block breadcrumb %}
+        <a href="{% url 'accounts:dashboard'  %}">Painel</a>
+    {% endblock %}
+</ul>
+    <div>
+        {% load_my_courses user as enrollments %}
+        <div style="color: #993300">
+            <p>Meus Cursos</p>
+            <p style="color: #1f8dd6">
+            {% for cursos in enrollments %}
+                <a href="">{{cursos.course}} </a>
+            {% endfor %}
+            </p>
+        </div>
+        <a href="{% url 'accounts:edit'  %}">Editar conta</a>
+        <a href="{% url 'accounts:edit_password'  %}">Editar senha</a>
+    </div>
+
+
+    <div>
+        {% block dashboard_content %}
+            <h4>{{ user }}</h4>
+            <h4>{{ user.email }}</h4>
+        {% endblock %}
+    </div>
+     <h3>Não estou usando daqui para baixo</h3>
+    {%  my_courses user  %}
+{% endblock %}

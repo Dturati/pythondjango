@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block  content %}
+{% for course in courses %}
+{% load staticfiles %}
+<div class="content">
+
+    <table class="pure-table">
+    <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Descrição</th>
+            <th>imagem</th>
+        </tr>
+    </thead>
+
+    <tbody>
+            <td> <a href="{%  url 'index:details' course.slug %}">  {{ course.name }}</a></td>
+            <td>  {{ course.description | linebreaks}}</td> <!-- linebreak coloca paragrafo -->
+             <td>
+                <a href="{{ course.get_absolute_url }}">
+                {% if course.image %}
+               <img src="{{ course.image.url }}" alt="">
+                {% else %}
+                    <img src="{% static 'img/teste.jpg' %}" alt="" /> <!-- static carrega arquivos de diretorio -->
+                </a>
+                {%endif%}
+             </td>
+    </tbody>
+</table>
+
+</div>
+{% empty %} <!-- Se o for estiver vazio -->
+<div class="content">
+    <p>Nenhum curso disponível</p>
+</div>
+{% endfor %}
+{% endblock %}
