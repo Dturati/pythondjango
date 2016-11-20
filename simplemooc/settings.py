@@ -142,14 +142,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'simplemooc','media')
 MEDIA_URL = '/media/'   #carregar imagem
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Nome <davidturati@gmail.com>'
+DEFAULT_FROM_EMAIL = ''
 EMAIL_USE_TLS   =   True
 EMAIL_HOST  =   'smtp.gmail.com'
-EMAIL_HOST_USER =   'davidturati@gmail.com'
-EMAIL_HOST_PASSWORD =   'asuszenfone2'
+EMAIL_HOST_USER =   ''
+EMAIL_HOST_PASSWORD =   ''
 EMAIL_PORT  =   587
 
-CONTACT_EMAIL = 'davidturati@gmail.com'
+CONTACT_EMAIL = ''
 
 #Autenticação
 LOGIN_URL = 'accounts:login'
